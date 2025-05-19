@@ -6,11 +6,15 @@
   "prettier": "@npm-questionpro/wick-ui-prettier-config",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start:dev": "NODE_ENV=development vite",
+    "start:mock_dev": "NODE_ENV=development vite --mode mock",
+    "build": "NODE_ENV=production tsc -b && vite build"
   },
   "dependencies": {
+    "@npm-questionpro/wick-ui-icon": "^6.2.0",
+    "@npm-questionpro/wick-ui-lib": "^0.21.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
@@ -25,8 +29,14 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "msw": "^2.8.4",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.32.1",
     "vite": "^6.3.5"
+  },
+  "msw": {
+    "workerDirectory": [
+      ""
+    ]
   }
 }
