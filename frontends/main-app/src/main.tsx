@@ -4,6 +4,7 @@ import {App} from './App.tsx'
 import {IS_MOCK_ENV} from './constants/appConstants.ts'
 import React from 'react'
 import ReactDom from 'react-dom/client'
+import {AppProviders} from './providers/AppProviders.tsx'
 
 async function enableMocking(): Promise<void> {
   if (!IS_MOCK_ENV) {
@@ -30,7 +31,9 @@ enableMocking()
   .then(() => {
     ReactDom.createRoot(document.getElementById('root')!).render(
       <React.StrictMode>
-        <App />
+        <AppProviders>
+          <App />
+        </AppProviders>
       </React.StrictMode>,
     )
   })
