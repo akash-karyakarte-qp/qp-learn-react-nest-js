@@ -1,9 +1,10 @@
-import {afterAll, afterEach, beforeAll, beforeEach, vi} from 'vitest'
+import {afterEach} from 'vitest'
 import {cleanup} from '@testing-library/react'
 import * as ResizeObserverModule from 'resize-observer-polyfill'
 
 import '@testing-library/dom'
 import {mswTestServer} from '../msw/mswTestServer'
+import '@testing-library/jest-dom'
 
 beforeAll(() => {
   // https://stackoverflow.com/a/72543616/8596140

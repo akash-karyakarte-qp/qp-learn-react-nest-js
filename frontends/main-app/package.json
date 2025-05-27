@@ -17,6 +17,7 @@
   "dependencies": {
     "@npm-questionpro/wick-ui-icon": "^6.2.0",
     "@npm-questionpro/wick-ui-lib": "^0.21.0",
+    "@testing-library/user-event": "^14.6.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
@@ -25,8 +26,9 @@
     "@npm-questionpro/wick-ui-eslint-config-frontend": "^0.0.3",
     "@npm-questionpro/wick-ui-prettier-config": "^1.0.0",
     "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
-    "@types/react": "^19.1.4",
+    "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.26.0",
