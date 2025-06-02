@@ -33,4 +33,8 @@ export const mswDevHandlers = [
     const newTodo: ITodo = {id: 1, title, status: 'active'}
     return sendResponse(newTodo)
   }),
+  http.get(`${API_BASE_URL}todos`, () => {
+    const todos = userMockDb.getTodos()
+    return sendResponse<ITodo[]>(todos)
+  }),
 ]

@@ -6,8 +6,8 @@ import {
   WuModalClose,
   WuButton,
 } from '@npm-questionpro/wick-ui-lib'
-import React from 'react'
-import type { ITodo } from '../types/ITodo'
+import React, {useEffect} from 'react'
+import type {ITodo} from '../types/ITodo'
 
 interface IProps {
   userId?: string
@@ -15,11 +15,17 @@ interface IProps {
 
 export const TodoListScreen: React.FC<IProps> = () => {
   const [todos, setTodos] = React.useState<ITodo[]>([])
-  // State to manage the title input and modal visibility
   const [title, setTitle] = React.useState<string>('')
   const [isOpen, setIsOpen] = React.useState<boolean>(false)
   const [showError, setShowError] = React.useState<boolean>(false)
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
+
+  useEffect(() => {
+    ;(async (): Promise<void> => {
+      const initialTodos = await getTodos()
+      setTodos(initialTodos)
+    })()
+  }, [])
 
   const handleSave = async (): Promise<void> => {
     if (title.trim() === '') {
@@ -105,4 +111,25 @@ const callCreateApi = async (title: string): Promise<ITodo> => {
     })
 
   return newTodo
+}
+
+const getTodos = async (): Promise<ITodo[]> => {
+  const todos = await fetch('/api/todos', {
+    method: 'GET',
+    headers: {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
+      }
+      return response.json()
+    })
+    .then(data => {
+      return data.data as ITodo[]
+    })
+
+  return todos
 }

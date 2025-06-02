@@ -28,4 +28,11 @@ describe('TodoListScreen', () => {
 
     await screen.findByText(/Test Todo/i)
   })
+  test('Initially a user should see welcome screen with create todo button', async () => {
+    await testUtil.renderWithRoute(<App />, {route: '/'})
+
+    await screen.findByText(/Todo 1/i)
+    await screen.findByText(/Todo 2/i)
+    await screen.findByText(/Todo 3/i)
+  })
 })
