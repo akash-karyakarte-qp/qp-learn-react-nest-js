@@ -22,7 +22,8 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
+
     "types": ["vitest/globals", "@testing-library/dom"]
   },
-  "include": ["src","tests"]
+  "include": ["src"]
 }

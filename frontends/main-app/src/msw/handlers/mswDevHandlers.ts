@@ -2,7 +2,8 @@ import {HttpResponse, http} from 'msw'
 import {userMockDb} from '../mockDbs/userMockDb'
 import {API_BASE_URL, IS_MOCK_ENV} from '../../constants/appConstants'
 import type {IUser} from '../../types/IUser'
-import type { ITodo } from '../../types/ITodo'
+import type {ITodo} from '../../types/ITodo'
+import {todosMockDb} from '../mockDbs/todosMockDb'
 
 const sendResponse = <T>(res: T): HttpResponse<{data: T}> => {
   return HttpResponse.json({data: res})
@@ -30,11 +31,12 @@ export const mswDevHandlers = [
       return HttpResponse.json({error: 'Title is required'}, {status: 400})
     }
 
-    const newTodo: ITodo = {id: 1, title, status: 'active'}
+    const newTodo: ITodo = todosMockDb.createTodo(title)
     return sendResponse(newTodo)
   }),
-  http.get(`${API_BASE_URL}todos`, () => {
-    const todos = userMockDb.getTodos()
-    return sendResponse<ITodo[]>(todos)
+  http.get(`${API_BASE_URL}todos`, async ({request}) => {
+    await delayedResponse()
+
+    return sendResponse(todosMockDb.getTodos())
   }),
 ]
